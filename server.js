@@ -14,8 +14,12 @@ var db = new sqlite3.Database('odds_database.db');
 
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
-var io = require('socket.io').listen(app.listen(config.port));
+var io = require('socket.io').listen(app.listen(port, ipaddress, function() {
+    console.log('Listening on port: ' + port + ' and ip: ' + ipaddress);
+}));
 
 var routes = require('./routes/routes');
 var achievements = require('./achievements')();
