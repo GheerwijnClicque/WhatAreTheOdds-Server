@@ -16,8 +16,8 @@ var events = require('events');
 var eventEmitter = new events.EventEmitter();
 //var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 //var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-
-var io = require('socket.io').listen(app.listen(3000, function() {
+var port = 3000;
+var io = require('socket.io').listen(app.listen(port, function() {
     console.log('Listening on port: ' + port + ' and ip: ' + ipaddress);
 }));
 
